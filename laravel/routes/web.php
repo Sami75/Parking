@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('accueil');
+});
+
+Route::get('/place', function() {
+	return view('place');
 });
