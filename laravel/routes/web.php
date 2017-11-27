@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('accueil');
+    return view('connexion');
+});
+
+Route::get('/accueil', function() {
+	return view('accueil');
 });
 
 Route::get('/place', function() {
