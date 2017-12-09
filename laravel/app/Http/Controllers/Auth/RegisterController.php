@@ -48,8 +48,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'login' => 'required|string|max:50|unique:membres',
+            'nom' => 'required|string|max:50',
+            'prenom' => 'required|string|max:50',
+            'email' => 'required|string|email|max:255|unique:membres',
+            'tel' => 'required|numeric',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -58,14 +61,21 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \Parking\User
      */
+    
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            
+            'login' => $data['login'],
+            'nom' => $data['nom'],
+            'prenom' => $data['prenom'],
             'email' => $data['email'],
+            'tel' => $data['tel'],
             'password' => bcrypt($data['password']),
+            'rang' => 'SELECT rang FROM membres WHERE login = '.$data['login']'';
+
         ]);
     }
 }
