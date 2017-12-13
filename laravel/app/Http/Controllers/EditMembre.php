@@ -33,12 +33,17 @@ class EditMembre extends Controller
 		}	
 	}
 
-	/*public function store(Request $data){
+	protected function rang(Request $request, $id)
+	{
 
+		$this->validate($request, [
+			'rang' => 'required|numeric|unique:membres'
+		]);
 
-		DB::table('membres')->where('id', '=', $id)->delete();
+		$membre = User::findorFail($id);
 
-		return view('admin.editmembre');
-	}*/
+		$membre->update(['rang' => $request->rang ]);
 
+		return redirect()->route('editmembre', $membre);
+	}
 }

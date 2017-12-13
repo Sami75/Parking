@@ -39,10 +39,13 @@ Route::get('/attribplace', function() {
 	return view('admin.attribplace');
 });
 
-Route::get('editmembre', 'EditMembre@create');
+Route::get('editmembre', 'EditMembre@create')->name('editmembre');
 Route::get('selection/{membres}', 'EditMembre@show')->name('selection');
 Route::get('supprimer/{membres}', 'EditMembre@delete')->name('supprimer');
 
+Route::post('rang/{membres}', 'EditMembre@rang')->name('editrang');
+
+Route::get('password/{membres}', 'EditMembre@password')->name('password');
 
 //Route::get('editmembre', 'EditMembre@store')->name('store');
 
@@ -50,9 +53,6 @@ Route::get('editplace', function() {
 	return view('admin.editplace');
 });
 
-Route::get('/editrangmembre', function() {
-	return view('admin.editrangmembre');
-});
 
 Route::get('/historiqueplace', function() {
 	return view('admin.historiqueplace');

@@ -9,8 +9,10 @@
                 <div class="panel-heading"><h3>Edition de la liste des membres</h3></div>
 
                 <div class="panel-body">
+                     <form class="form-horizontal" method="POST" action="{{ route('editrang', '$membres') }}">
+                        {{ csrf_field() }}
 
-                    <table class="table">
+                         <table class="table">
                         <tr>
                             <th>Id utilisateur</th>
                             <th>Nom d'utilisateur</th>
@@ -20,30 +22,31 @@
                             <th>Téléphone</th>
                             <th>Rang</th>
                             <th></th>
+                            <th></th>
                         </tr>
 
-                        @foreach($membres as $membre)
                         <tr>
-                            <td>{{ $membre->id }}</td>
-                            <td>{{ $membre->login }}</td>
-                            <td>{{ $membre->nom }}</td>
-                            <td>{{ $membre->prenom }}</td>
-                            <td>{{ $membre->email }}</td>
-                            <td>{{ $membre->tel }}</td>
-                            <td>{{ $membre->rang }}</td>
-                            @if(!$membre->admin)
-                            <td>
-                                <a href="{{ route('selection', $membre->id) }}">Editer</a>
-                            </td>
+                            <td>{{ $membres->id }}</td>
+                            <td>{{ $membres->login }}</td>
+                            <td>{{ $membres->nom }}</td>
+                            <td>{{ $membres->prenom }}</td>
+                            <td>{{ $membres->email }}</td>
+                            <td>{{ $membres->tel }}</td>
+                            
+                            @if(!$membres->admin)
+                            <td><input type="text" name="rang" value="{{ $membres->rang }}"></td>
+                            {!! $errors->first('rang', '<p class="error">:message</p>') !!}
                             @else
                             <td></td>
                             @endif
-                            <td></td>
                         </tr>
-                        @endforeach
                     </table>
-
+                    
+                </form>
                 </div>
+
+                <a href="{{ route('editmembre') }}">Annuler</a>
+
             </div>
         </div>
     </div>
