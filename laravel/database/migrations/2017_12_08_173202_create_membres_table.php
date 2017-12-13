@@ -17,12 +17,13 @@ class CreateMembresTable extends Migration
             $table->increments('id');
             $table->string('login', 50);
             $table->string('nom', 50);
-            $table->string('prenom', 50)->nullable();
+            $table->string('prenom', 50);
             $table->string('email', 50);
-            $table->integer('tel')->nullable();
+            $table->integer('tel');
             $table->string('password');
             $table->boolean('admin')->default(0);
             $table->integer('rang')->nullable()->unique();
+            $table->boolean('valider')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

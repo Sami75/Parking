@@ -74,7 +74,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'tel' => $data['tel'],
             'password' => bcrypt($data['password']),
-            'rang' => 'SELECT rang FROM membres WHERE login = '.$data['login']'';
 
         ]);
     }

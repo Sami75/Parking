@@ -28,7 +28,7 @@ class LoginController extends Controller
      * @var string
      */
 
-    protected function redirectTo() { 
+    /*protected function redirectTo() { 
             
         if (Auth::user()->admin) 
             return '/admin'; 
@@ -36,6 +36,13 @@ class LoginController extends Controller
         else            
             return '/home'; 
     }
+
+   /*protected function membre() {
+
+        $membre = DB::select('select * from membres');
+
+        return ['membres' => $membres];
+    }*/
 
     /**
      * Create a new controller instance.

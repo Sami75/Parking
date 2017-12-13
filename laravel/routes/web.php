@@ -33,15 +33,20 @@ Route::get('/modifierpwd', function() {
 
 /*Admin route*/
 
+use App\Models\Membre;
+
 Route::get('/attribplace', function() {
 	return view('admin.attribplace');
 });
 
-Route::get('/editmembre', function() {
-	return view('admin.editmembre');
-});
+Route::get('editmembre', 'EditMembre@create');
+Route::get('selection/{membres}', 'EditMembre@show')->name('selection');
+Route::get('supprimer/{membres}', 'EditMembre@delete')->name('supprimer');
 
-Route::get('/editplace', function() {
+
+//Route::get('editmembre', 'EditMembre@store')->name('store');
+
+Route::get('editplace', function() {
 	return view('admin.editplace');
 });
 

@@ -9,8 +9,10 @@
                 <div class="panel-heading"><h3>Edition de la liste des membres</h3></div>
 
                 <div class="panel-body">
+                     <form class="form-horizontal" method="POST" action="{{ route('selection', '$membres') }}">
+                        {{ csrf_field() }}
 
-                    <table class="table">
+                         <table class="table">
                         <tr>
                             <th>Id utilisateur</th>
                             <th>Nom d'utilisateur</th>
@@ -20,25 +22,23 @@
                             <th>Téléphone</th>
                             <th></th>
                         </tr>
-                        
-                        @foreach($membres as $membre)
+
                         <tr>
-                            <td>{{ $membre->id }}</td>
-                            <td>{{ $membre->login }}</td>
-                            <td>{{ $membre->nom }}</td>
-                            <td>{{ $membre->prenom }}</td>
-                            <td>{{ $membre->email }}</td>
-                            <td>{{ $membre->tel }}</td>
-                            @if(!$membre->admin)<td><a href="{{ route('selection', $membre->id) }}">Editer</a>
+                            <td>{{ $membres->id }}</td>
+                            <td>{{ $membres->login }}</td>
+                            <td>{{ $membres->nom }}</td>
+                            <td>{{ $membres->prenom }}</td>
+                            <td>{{ $membres->email }}</td>
+                            <td>{{ $membres->tel }}</td>
+                            @if(!$membres->admin)<td><a href="{{ route('supprimer', $membres->id) }}">Supprimer</a>
                             </td>
                             @else
                             <td></td>
                             @endif
-                            <td></td>
                         </tr>
-                        @endforeach
                     </table>
-
+                    
+                </form>
                 </div>
             </div>
         </div>
