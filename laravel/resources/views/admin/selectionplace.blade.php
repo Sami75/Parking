@@ -6,10 +6,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Edition de la liste des membres</h3></div>
+                <div class="panel-heading"><h3>Edition de la liste des places de parkings</h3></div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('update', $membres->id) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('update', $places->id) }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="method" value="PUT">
 
@@ -25,18 +25,16 @@
                             </tr>
 
                             <tr>
-                                @if(!$membres->admin)
-                                    <td>{{ $membres->id }}</td>
-                                    <td>{{ $membres->login }}</td>
-                                    <td>{{ $membres->nom }}</td>
-                                    <td>{{ $membres->prenom }}</td>
-                                    <td>{{ $membres->email }}</td>
+                                @if(!$places->admin)
+                                    <td>{{ $places->id }}</td>
+                                    <td>{{ $places->login }}</td>
+                                    <td>{{ $places->nom }}</td>
+                                    <td>{{ $places->prenom }}</td>
+                                    <td>{{ $places->email }}</td>
                                     <td>
-                                        <input type="password" name="password" placeholder="Entrer le mot de passe">
-                                        {!! $errors->first('password', '<p class="error">:message</p>') !!}
+                                       
                                     <td>
-                                        <input type="text" name="rang" placeholder="Entrer le rang" value="{{ old('rang') ?? $membres->rang }}" size="1">
-                                        {!! $errors->first('rang', '<p class="error">:message</p>') !!}
+                                        
                                     </td>
                                 @else
                                     <td></td>
@@ -49,7 +47,7 @@
                             <a href="{{ route('editmembre') }}">
                                 <button type="button" class="btn btn-default btn-sm">Annuler</button>
                             </a>
-                            <a href="{{ route('supprimer', $membres->id) }}">
+                            <a href="{{ route('supprimer', $places->id) }}">
                                 <button type="button" class="btn btn-default btn-sm">Supprimer</button>
                             </a>
                         </div> 

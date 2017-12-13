@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;	
 use Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class EditMembre extends Controller
 {
@@ -33,16 +35,17 @@ class EditMembre extends Controller
 		}	
 	}
 
-	protected function rang(Request $request, $id)
+	protected function update(Request $request, $id)
 	{
 
 		$this->validate($request, [
-			'rang' => 'required|numeric|unique:membres'
+			'rang' => 'numeric|unique:membres',
+			'password' => 'string'
 		]);
 
 		$membre = User::findorFail($id);
 
-		$membre->update(['rang' => $request->rang ]);
+		$membre->update(['rang' => $request->rang, 'password' => Hash::make($request->password)]);
 
 		return redirect()->route('editmembre', $membre);
 	}

@@ -18,14 +18,10 @@
 
                     <ul id="nav">
 
-                        <li><a href="editmembre" title="Editer la liste des membres">Editer les Membres</a></li>
-                        <li><a href="editrangmembre" title="Editer la liste d'attente, reinitialiser le mot de passe d'un membre">Editer la liste d'attente</a></li>
-                        <li><a href="editplace" title="Editer la liste des places">Places</a></li>
-                        <li><a href="rangmembre" title="Consulter la liste d'attente">Liste d'attente</a></li>
+                        <li><a href="editmembre" title="Editer la liste des membres">Editer les membres</a></li>
+                        <li><a href="editplace" title="Editer la liste des places">Editer les places de parkings</a></li>
+                        <li><a href="rangmembre" title="Consulter la liste d'attente">File d'attente</a></li>
                         <li><a href="historiqueplace" title="Consulter la liste d'attribution des places">Historique</a></li>
-                        <li><a href="attribplace" title="Attribuer des places">Attribuer une place</a></li>
-
-
                     </ul>
                 </div>
             </div>

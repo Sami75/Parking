@@ -35,23 +35,17 @@ Route::get('/modifierpwd', function() {
 
 use App\Models\Membre;
 
-Route::get('/attribplace', function() {
-	return view('admin.attribplace');
-});
-
+/*Routes pour l'édition des informations d'un membres*/
 Route::get('editmembre', 'EditMembre@create')->name('editmembre');
 Route::get('selection/{membres}', 'EditMembre@show')->name('selection');
 Route::get('supprimer/{membres}', 'EditMembre@delete')->name('supprimer');
+Route::post('update/{membres}', 'EditMembre@update')->name('update');
+/*Routes pour l'édition des informations d'un membres*/
 
-Route::post('rang/{membres}', 'EditMembre@rang')->name('editrang');
-
-Route::get('password/{membres}', 'EditMembre@password')->name('password');
-
-//Route::get('editmembre', 'EditMembre@store')->name('store');
-
-Route::get('editplace', function() {
-	return view('admin.editplace');
-});
+/*Routes pour l'édition des places de parkings*/
+Route::get('editplace', 'EditPlace@create')->name('editplace');
+Route::get('selectionplace/{places}', 'EditPlace@show')->name('selectionplace');
+/*Routes pour l'édition des places de parkings*/
 
 
 Route::get('/historiqueplace', function() {
