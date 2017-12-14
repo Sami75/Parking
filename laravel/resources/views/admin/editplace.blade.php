@@ -10,7 +10,7 @@
 
                 <div class="panel-body text-center">
 
-                    <table class="table-striped">
+                    <table class="table-hover">
                         <tr>
                             <th class="col-md-2">Id d'utilisateur</th>
                             <th class="col-md-2">Id place</th>

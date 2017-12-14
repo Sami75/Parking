@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Edition de la liste des membres</h3></div>
+                <div class="panel-heading"><h3>Attribuer manuelle une place de parking</h3></div>
 
                 <div class="panel-body text-center">
 
@@ -18,7 +18,6 @@
                             <th class="col-md-2">Prenom</th>
                             <th class="col-md-2">Adresse e-mail</th>
                             <th class="col-md-2">Téléphone</th>
-                            <th class="col-md-2">Rang</th>
                             <th class="col-md-2">Sélectionner</th>
 
                         </tr>
@@ -31,7 +30,6 @@
                             <td >{{ $membre->prenom }}</td>
                             <td >{{ $membre->email }}</td>
                             <td >{{ $membre->tel }}</td>
-                            <td >{{ $membre->rang }}</td>
                             @if(!$membre->admin)
                             <td >
                                 <a href="{{ route('selection', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>

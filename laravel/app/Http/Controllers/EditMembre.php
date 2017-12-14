@@ -23,6 +23,18 @@ class EditMembre extends Controller
 		return view('admin.selection', compact('membres'));
 	}
 
+	public function showpwd($id)
+	{
+		$membres = User::findOrFail($id);
+		return view('admin.editpwd', compact('membres'));
+	}
+
+	public function showrang($id)
+	{
+		$membres = User::findOrFail($id);
+		return view('admin.editrang', compact('membres'));
+	}
+
 	protected function delete($id)	
 	{
 		$membre = User::where('id', $id)->first(); // File::find($id)
@@ -35,17 +47,30 @@ class EditMembre extends Controller
 		}	
 	}
 
-	protected function update(Request $request, $id)
+	protected function updaterang(Request $request, $id)
 	{
 
 		$this->validate($request, [
 			'rang' => 'numeric|unique:membres',
-			'password' => 'string'
 		]);
 
 		$membre = User::findorFail($id);
 
-		$membre->update(['rang' => $request->rang, 'password' => Hash::make($request->password)]);
+		$membre->update(['rang' => $request->rang, ]);
+
+		return redirect()->route('editmembre', $membre);
+	}
+
+	protected function updatepwd(Request $request, $id)
+	{
+		$this->validate($request, [
+			'password' => 'required|string|min:6|confirmed',
+		]);
+
+		$membre = User::findorFail($id);
+
+		$membre->update(['password' => Hash::make($request->password)]);
+			// 'password' => Hash::make($request->password)]);
 
 		return redirect()->route('editmembre', $membre);
 	}

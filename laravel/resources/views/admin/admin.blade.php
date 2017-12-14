@@ -20,6 +20,7 @@
 
                         <li><a href="editmembre" title="Editer la liste des membres">Editer les membres</a></li>
                         <li><a href="editplace" title="Editer la liste des places">Editer les places de parkings</a></li>
+                        <li><a href="ajoutplace" title="Attribuer une place manuellement">Attribuer une place à un utilisateur</a></li>
                         <li><a href="rangmembre" title="Consulter la liste d'attente">File d'attente</a></li>
                         <li><a href="historiqueplace" title="Consulter la liste d'attribution des places">Historique</a></li>
                     </ul>

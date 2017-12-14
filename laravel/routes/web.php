@@ -39,13 +39,18 @@ use App\Models\Membre;
 Route::get('editmembre', 'EditMembre@create')->name('editmembre');
 Route::get('selection/{membres}', 'EditMembre@show')->name('selection');
 Route::get('supprimer/{membres}', 'EditMembre@delete')->name('supprimer');
-Route::post('update/{membres}', 'EditMembre@update')->name('update');
+Route::post('updaterang/{membres}', 'EditMembre@updaterang')->name('updaterang');
+Route::post('updatepwd/{membres}', 'EditMembre@updatepwd')->name('updatepwd');
+Route::get('editpwd/{membres}', 'EditMembre@showpwd')->name('editpwd');
+Route::get('editrang/{membres}', 'EditMembre@showrang')->name('editrang');
 /*Routes pour l'édition des informations d'un membres*/
 
 /*Routes pour l'édition des places de parkings*/
 Route::get('editplace', 'EditPlace@create')->name('editplace');
-Route::get('selectionplace/{places}', 'EditPlace@show')->name('selectionplace');
+Route::get('selectionplace/{place}', 'EditPlace@show')->name('selectionplace');
 /*Routes pour l'édition des places de parkings*/
+
+Route::get('ajoutplace', 'AjoutPlace@create')->name('ajoutplace');
 
 
 Route::get('/historiqueplace', function() {

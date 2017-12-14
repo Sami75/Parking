@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
 use App\User;
-use Auth;
-use DB;
 
-class EditPlace extends Controller
+class AjoutPlace extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,8 +24,8 @@ class EditPlace extends Controller
      */
     public function create()
     {
-        $places = DB::table('membres')->join('reserver', 'membres.id', '=', 'reserver.id')->join('places', 'places.idplace', '=', 'reserver.idplace')->get();
-        return view('admin.editplace', compact('places'));
+        $membres = User::all();
+        return view('admin.ajoutplace', compact('membres'));
     }
 
     /**
@@ -50,11 +47,7 @@ class EditPlace extends Controller
      */
     public function show($id)
     {
-        $places = DB::table('membres')->join('reserver', function($join) {
-
-            $join->on('membres.id', '=', 'reserver.id')->where('reserver.id', '=', '$id');})->join('places', 'places.idplace', '=', 'reserver.idplace')->get();
-        
-        return view('admin.selectionplace', compact('places'));
+        //
     }
 
     /**
