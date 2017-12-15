@@ -47,10 +47,13 @@ Route::get('editrang/{membres}', 'EditMembre@showrang')->name('editrang');
 
 /*Routes pour l'édition des places de parkings*/
 Route::get('editplace', 'EditPlace@create')->name('editplace');
-Route::get('selectionplace/{place}', 'EditPlace@show')->name('selectionplace');
+Route::get('creationplace', 'EditPlace@show')->name('creation');
+Route::post('addedplace', 'EditPlace@add')->name('added');
 /*Routes pour l'édition des places de parkings*/
 
 Route::get('ajoutplace', 'AjoutPlace@create')->name('ajoutplace');
+Route::get('selectionplace/{membres}', 'AjoutPlace@show')->name('selectionplace');
+Route::get('addplace/{membres}', 'AjoutPlace@updateplace')->name('addplace');
 
 
 Route::get('/historiqueplace', function() {

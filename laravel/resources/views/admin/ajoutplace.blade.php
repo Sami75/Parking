@@ -32,7 +32,7 @@
                             <td >{{ $membre->tel }}</td>
                             @if(!$membre->admin)
                             <td >
-                                <a href="{{ route('selection', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
+                                <a href="{{ route('selectionplace', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
                             </td>
                             @else
                             <td></td>

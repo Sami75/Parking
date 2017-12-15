@@ -27,7 +27,7 @@ class EditPlace extends Controller
      */
     public function create()
     {
-        $places = DB::table('membres')->join('reserver', 'membres.id', '=', 'reserver.id')->join('places', 'places.idplace', '=', 'reserver.idplace')->get();
+        $places = DB::table('places')->get();
         return view('admin.editplace', compact('places'));
     }
 
@@ -48,13 +48,28 @@ class EditPlace extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $places = DB::table('membres')->join('reserver', function($join) {
+    public function show()
+    {   
+        return view('admin.creationplace', compact('place'));
+    }
 
-            $join->on('membres.id', '=', 'reserver.id')->where('reserver.id', '=', '$id');})->join('places', 'places.idplace', '=', 'reserver.idplace')->get();
-        
-        return view('admin.selectionplace', compact('places'));
+    public function add(Request $request)
+    {
+        $this->validate($request, [
+            'nbplace' => 'required|numeric',
+        ]);
+        $nbpl = $request->input('nbplace');
+
+        $cmp = DB::table('places')->count();
+
+        for($i=1; $i<=$nbpl; $i++) {
+            $cmp++;
+            DB::table('places')->insert([
+                'numplace'=> $cmp 
+            ]);
+        }
+
+        return redirect()->route('editplace', 'places');
     }
 
     /**
@@ -75,10 +90,6 @@ class EditPlace extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

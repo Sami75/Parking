@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DB;
 
 class AjoutPlace extends Controller
 {
@@ -25,7 +26,8 @@ class AjoutPlace extends Controller
     public function create()
     {
         $membres = User::all();
-        return view('admin.ajoutplace', compact('membres'));
+
+        return view('admin.ajoutplace');
     }
 
     /**
@@ -47,7 +49,13 @@ class AjoutPlace extends Controller
      */
     public function show($id)
     {
-        //
+        $membres = DB::table('reserver')
+            ->join('places', function ($join) {
+                $join->on('reserver.idplace', '=', 'places.idplace')
+                ->where('reserver.idplace', '=', '$id');
+        })
+        ->get();
+        return view('admin.selectionplace', compact('membres'));
     }
 
     /**
@@ -68,9 +76,16 @@ class AjoutPlace extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateplace(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'place' => 'numeric|unique:places',
+        ]);
+
+
+        $membre->update(['rang' => $request->rang, ]);
+
+        return redirect()->route('editmembre', $membre);
     }
 
     /**

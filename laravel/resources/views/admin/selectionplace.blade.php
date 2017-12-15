@@ -9,46 +9,58 @@
                 <div class="panel-heading"><h3>Edition de la liste des places de parkings</h3></div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('update', $places->id) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('addplace', $membres->id) }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="method" value="PUT">
 
                         <table class="table">
                             <tr>
                                 <th>Id utilisateur</th>
-                                <th>Nom d'utilisateur</th>
-                                <th>Nom</th>
-                                <th>Prenom</th>
-                                <th>Adresse e-mail</th>
-                                <th>Mot de passe</th>
-                                <th>Rang</th>
+                                <th>Id place</th>
+                                <th>Numéro de place</th>
+                                <th>Début de réservation</th>
+                                <th>Fin de réservation</th>
                             </tr>
 
                             <tr>
-                                @if(!$places->admin)
-                                    <td>{{ $places->id }}</td>
-                                    <td>{{ $places->login }}</td>
-                                    <td>{{ $places->nom }}</td>
-                                    <td>{{ $places->prenom }}</td>
-                                    <td>{{ $places->email }}</td>
-                                    <td>
-                                       
-                                    <td>
-                                        
-                                    </td>
+                                @if(!$membres->admin)
+                                    <td>{{ $membres->id }}</td>
+                                    <td>{{ $membres->idplace }}</td>
+                                    <td>{{ $membres->numplace }}</td>
+                                    <td>{{ $membres->debutperiode }}</td>
+                                    <td>{{ $membres->finperiode }}</td>
                                 @else
                                     <td></td>
                                     <td></td>
                                 @endif
                             </tr>
-                        </table> 
+                        </table>
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Mot de passe</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Confirmer le mot de passe</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
                         <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-default btn-sm" value="Submit Button">Modifier</button>
                             <a href="{{ route('editmembre') }}">
                                 <button type="button" class="btn btn-default btn-sm">Annuler</button>
                             </a>
-                            <a href="{{ route('supprimer', $places->id) }}">
-                                <button type="button" class="btn btn-default btn-sm">Supprimer</button>
                             </a>
                         </div> 
                     </form>

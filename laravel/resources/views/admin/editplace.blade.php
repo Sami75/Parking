@@ -12,38 +12,23 @@
 
                     <table class="table-hover">
                         <tr>
-                            <th class="col-md-2">Id d'utilisateur</th>
                             <th class="col-md-2">Id place</th>
-                            <th class="col-md-2">Nom</th>
-                            <th class="col-md-2">Prenom</th>
-                            <th class="col-md-2">Adresse e-mail</th>
-                            <th class="col-md-2">Numero place</th>
-                            <th class="col-md-2">Début de réservation</th>
-                            <th class="col-md-2">Fin de réservation</th>
+                            <th class="col-md-2">Numéro de place</th>
                             <th class="col-md-2">Sélectionner</th>
 
                         </tr>
                         @foreach($places as $place)
-                            <td> {{ $place->id }} </td>
-                            <td> {{ $place->idplace}}
-                            <td> {{ $place->nom}}</td>
-                            <td> {{ $place->prenom}}</td>
-                            <td> {{ $place->email}}</td>
-                            <td> {{ $place->numplace}}</td>
-                            <td> {{ $place->debutperiode }}</td>
-                            <td> {{ $place->finperiode }}</td>
-                            @if(!$place->admin)
-                            <td >
-                                <a href="{{ route('selectionplace', $place->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
+                        <tr>
+                            <td> {{ $place->idplace }} </td>
+                            <td> {{ $place->numplace}} </td>
+                            <td>
+                                <a href="{{ route('selectionplace', $place->idplace) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
                             </td>
-                            @else
-                            <td></td>
-                            @endif
-                            <td></td>
-                        </tr>
+                        </td>
+                        </tr>    
                         @endforeach
                     </table>
-
+                    <a href="{{route('creation')}}"><button type="button" class="btn btn-default btn-sm">Créer</button></a>
                 </div>
             </div>
         </div>
