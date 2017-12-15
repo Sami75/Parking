@@ -53,6 +53,14 @@ class EditPlace extends Controller
         return view('admin.creationplace', compact('place'));
     }
 
+    public function showplace($id)
+    {
+        $place = DB::table('places')
+                    ->where('idplace', $id)
+                    ->first();
+        return view('admin.selectionplace', compact('place'));
+    }
+
     public function add(Request $request)
     {
         $this->validate($request, [
@@ -60,7 +68,7 @@ class EditPlace extends Controller
         ]);
         $nbpl = $request->input('nbplace');
 
-        $cmp = DB::table('places')->count();
+        $cmp = DB::table('places')->max('numplace');
 
         for($i=1; $i<=$nbpl; $i++) {
             $cmp++;
@@ -70,6 +78,22 @@ class EditPlace extends Controller
         }
 
         return redirect()->route('editplace', 'places');
+    }
+
+    public function deleteplace($id) 
+    {
+
+        $place = DB::table('places')
+                    ->where('idplace', $id)
+                    ->first(); // File::find($id)
+
+        if($place) {
+
+            $place = DB::table('places')->where('idplace', '=', $id)->delete();
+            $places = DB::table('places')
+                        ->get();
+            return view('admin.editplace', compact('places'));
+        }
     }
 
     /**

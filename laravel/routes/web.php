@@ -49,10 +49,11 @@ Route::get('editrang/{membres}', 'EditMembre@showrang')->name('editrang');
 Route::get('editplace', 'EditPlace@create')->name('editplace');
 Route::get('creationplace', 'EditPlace@show')->name('creation');
 Route::post('addedplace', 'EditPlace@add')->name('added');
+Route::get('selectionplace/{idplace}', 'EditPlace@showplace')->name('selectionplace');
+Route::get('deleteplace/{places}', 'EditPlace@deleteplace')->name('deleteplace');
 /*Routes pour l'édition des places de parkings*/
 
 Route::get('ajoutplace', 'AjoutPlace@create')->name('ajoutplace');
-Route::get('selectionplace/{membres}', 'AjoutPlace@show')->name('selectionplace');
 Route::get('addplace/{membres}', 'AjoutPlace@updateplace')->name('addplace');
 
 
