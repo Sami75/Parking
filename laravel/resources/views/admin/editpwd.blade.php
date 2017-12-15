@@ -62,9 +62,6 @@
                             <a href="{{ route('editmembre') }}">
                                 <button type="button" class="btn btn-default btn-sm">Annuler</button>
                             </a>
-                            <a href="{{ route('supprimer', $membres->id) }}">
-                                <button type="button" class="btn btn-default btn-sm">Supprimer</button>
-                            </a>
                         </div> 
                     </form>
                 </div>

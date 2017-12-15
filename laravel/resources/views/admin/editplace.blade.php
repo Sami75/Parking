@@ -14,6 +14,7 @@
                         <tr>
                             <th class="col-md-2">Id place</th>
                             <th class="col-md-2">Numéro de place</th>
+                            <th class="col-md-2">Statut</th>
                             <th class="col-md-2">Sélectionner</th>
 
                         </tr>
@@ -21,6 +22,12 @@
                         <tr>
                             <td> {{ $place->idplace }} </td>
                             <td> {{ $place->numplace}} </td>
+                            
+                                @if($place->reserver == 1)
+                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                @else
+                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                @endif
                             <td>
                                 <a href="{{ route('selectionplace', $place->idplace) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
                             </td>

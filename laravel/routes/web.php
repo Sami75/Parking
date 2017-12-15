@@ -22,7 +22,8 @@ Route::get('/historique', function() {
 });
 
 Route::get('reserver', 'Reserver@create')->name('reserverplace');
-Route::get('send','Reserver@send')->name('sendplace');
+Route::get('send/{membre}','Reserver@send')->name('sendplace');
+Route::get('sended/{message}', 'Reserver@send')->name('sended');
 
 
 Route::get('/modifierpwd', function() {
@@ -53,7 +54,8 @@ Route::get('deleteplace/{places}', 'EditPlace@deleteplace')->name('deleteplace')
 /*Routes pour l'édition des places de parkings*/
 
 Route::get('ajoutplace', 'AjoutPlace@create')->name('ajoutplace');
-Route::get('addplace/{membres}', 'AjoutPlace@updateplace')->name('addplace');
+Route::get('addplace/{membre}', 'AjoutPlace@show')->name('addplace');
+ROute::post('updateplace/{membre}', 'AjoutPlace@updateplace')->name('updateplace');
 
 
 Route::get('/historiqueplace', function() {

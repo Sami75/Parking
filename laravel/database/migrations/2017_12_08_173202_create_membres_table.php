@@ -15,10 +15,10 @@ class CreateMembresTable extends Migration
     {
         Schema::create('membres', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('login', 50);
+            $table->string('login', 50)->unique();
             $table->string('nom', 50);
             $table->string('prenom', 50);
-            $table->string('email', 50);
+            $table->string('email', 50)->unique();
             $table->integer('tel');
             $table->string('password');
             $table->boolean('admin')->default(0);

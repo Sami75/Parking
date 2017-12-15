@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\User;
 use DB;
+
 
 class AjoutPlace extends Controller
 {
@@ -25,9 +27,10 @@ class AjoutPlace extends Controller
      */
     public function create()
     {
-        $membres = User::all();
+        $membresreserver = DB::table('reserver')
+            ->get();
 
-        return view('admin.ajoutplace');
+        return view('admin.ajoutplace', compact('membresreserver'));
     }
 
     /**
@@ -49,13 +52,16 @@ class AjoutPlace extends Controller
      */
     public function show($id)
     {
-        $membres = DB::table('reserver')
-            ->join('places', function ($join) {
-                $join->on('reserver.idplace', '=', 'places.idplace')
-                ->where('reserver.idplace', '=', '$id');
-        })
-        ->get();
-        return view('admin.selectionplace', compact('membres'));
+        $membre = User::findOrFail($id);
+        $reservation = DB::table('reserver')
+            ->where('id', '=', $id)
+            ->first();
+        $idplace = $reservation->idplace;
+        $numplace = DB::table('places')
+            ->where('idplace', '=', $idplace)
+            ->first();
+
+        return view('admin.addplace', compact('membre', 'numplace', 'reservation'));
     }
 
     /**
@@ -79,13 +85,24 @@ class AjoutPlace extends Controller
     public function updateplace(Request $request, $id)
     {
         $this->validate($request, [
-            'place' => 'numeric|unique:places',
+            'debutperiode' => 'date',
+            'finperiode' => 'date'
         ]);
+        $debutperiode = $request->debutperiode;
+        $finperiode= $request->finperiode;
 
+        $membre = User::findOrFail($id);
 
-        $membre->update(['rang' => $request->rang, ]);
+        DB::table('reserver')
+            ->where('id', '=', $id)
+            ->update([
+            'debutperiode' => $debutperiode,
+            'finperiode' => $finperiode,
+         ]);
 
-        return redirect()->route('editmembre', $membre);
+        
+
+        return redirect()->route('ajoutplace', $membre);
     }
 
     /**

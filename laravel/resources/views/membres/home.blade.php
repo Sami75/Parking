@@ -24,17 +24,16 @@
 
                     </ul>
 
-                    <?php $rang = Auth::user()->rang ?>
-
-                    @if ($rang == null)
-                    {{"Réserver votre place de parking, maintenant, pour connaître votre place dans la file d'attente, ou votre numéro de place de parking"}}
-                    @elseif($rang > 0)
-                    {{"Votre place dans la file d'attente d'attribution d'une place : " }} {{ $rang }}
+                    @if (($rang == '---') && ($numplacemembre == '---'))
+                        <p>Veuillez réserver une place de parking si vous souhaitez obtenir une place, si des places sont disponibles votre numéro de place parking vous sera attribué, aprés que l'administrateur vous communiquera les période de réservation, sinon vous serez placé en file d'attente</p>
+                    @elseif (($numplacemembre == '---'))
+                        <p>Il n'y a plus de place de parking libre !</p>
+                        <p>Rang dans la file d'attente : {{ $rang }}
                     @else
-                    {{"Votre numéro de place de parking : "}} {{ Auth::user()->rang}}
+                        <p>Votre place de parking : {{ $numplacemembre }}</p>
+                        <p>Début de réservation : {{ $debutperiode }}</p>
+                        <p>Fin de réservation : {{ $finperiode }}</p>
                     @endif
-
-
                 </div>
             </div>
         </div>

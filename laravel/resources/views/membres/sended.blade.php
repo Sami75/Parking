@@ -9,7 +9,10 @@
 
                 <div class="panel-body">
             		<div class="panel-body text-center">
-            			<a href="{{ route('sendplace', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Réserver</button></a>
+                        @if (Session::has('message'))
+                            <div class="alert alert-info">{{ Session::get('message') }}</div>
+                        @endif
+            			<a href="{{ route('home') }}"><button type="button" class="btn btn-default btn-sm">Accueil</button></a>
                 	</div>
                 </div>
             </div>

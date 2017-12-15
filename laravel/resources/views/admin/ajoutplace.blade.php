@@ -13,31 +13,20 @@
                     <table class="table-hover">
                         <tr>
                             <th class="col-md-2">Id utilisateur</th>
-                            <th class="col-md-2">Nom d'utilisateur</th>
-                            <th class="col-md-2">Nom</th>
-                            <th class="col-md-2">Prenom</th>
-                            <th class="col-md-2">Adresse e-mail</th>
-                            <th class="col-md-2">Téléphone</th>
-                            <th class="col-md-2">Sélectionner</th>
+                            <th class="col-md-2">Id place</th>
+                            <th class="col-md-2">Début de réservation</th>
+                            <th class="col-md-2">Fin de réservation</th>
 
                         </tr>
 
-                        @foreach($membres as $membre)
+                        @foreach($membresreserver as $membre)
                         <tr>
                             <td >{{ $membre->id }}</td>
-                            <td >{{ $membre->login }}</td>
-                            <td >{{ $membre->nom }}</td>
-                            <td >{{ $membre->prenom }}</td>
-                            <td >{{ $membre->email }}</td>
-                            <td >{{ $membre->tel }}</td>
-                            @if(!$membre->admin)
+                            <td >{{ $membre->idplace }}</td>
+                            <td >{{ $membre->debutperiode }}</td>
+                            <td >{{ $membre->finperiode }}</td>
                             <td >
-                                <a href="{{ route('selectionplace', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
-                            </td>
-                            @else
-                            <td></td>
-                            @endif
-                            <td></td>
+                                <a href="{{ route('addplace', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
                         </tr>
                         @endforeach
                     </table>

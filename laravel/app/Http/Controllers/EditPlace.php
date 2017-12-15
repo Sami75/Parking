@@ -89,9 +89,12 @@ class EditPlace extends Controller
 
         if($place) {
 
-            $place = DB::table('places')->where('idplace', '=', $id)->delete();
+            $place = DB::table('places')
+                        ->where('idplace', '=', $id)
+                        ->delete();
             $places = DB::table('places')
                         ->get();
+                        
             return view('admin.editplace', compact('places'));
         }
     }
