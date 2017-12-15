@@ -19,7 +19,7 @@
                     <ul id="nav">
 
                         <li><a href="historique" title="Historique de vos place">Historique</a></li>
-                        <li><a href="reserver" title="Demande de réservation">Réservation</a></li>
+                        <li><a href="{{ route('reserverplace') }}" title="Demande de réservation">Réservation</a></li>
                         <li><a href="modifierpwd" title="Modifier son mot de passe">Modifier le mot de passe</a></li>
 
                     </ul>

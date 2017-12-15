@@ -21,9 +21,8 @@ Route::get('/historique', function() {
 	return view('membres.historique');
 });
 
-Route::get('/reserver', function() {
-	return view('membres.reserver');
-});
+Route::get('reserver', 'Reserver@create')->name('reserverplace');
+Route::get('send','Reserver@send')->name('sendplace');
 
 
 Route::get('/modifierpwd', function() {
