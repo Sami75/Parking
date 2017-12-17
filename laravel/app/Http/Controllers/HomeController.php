@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controller\Auth\LoginController;
 use DB;
+use App\user;
 
 class HomeController extends Controller
 {
@@ -32,34 +34,63 @@ class HomeController extends Controller
         else 
 
             $rang = Auth::user()->rang;
-
-            if($rang == null) 
+            $membrevalider = Auth::user()->valider;
+            $rangmin = DB::table('membres')
+                ->min('rang');
+        
+            if($rangmin == null)
             {
-                $rang = "---";
+                $rangbool = 0;
+            }
+            else {
+                $rangbool = 1;
             }
 
-            $id = Auth::user()->id;
 
-            $reserver = DB::table('reserver')
-                ->where('id', '=', $id)
+            $id = Auth::User()->id;
+            $today = date('Y-m-d');
+            $membreadmin = DB::table('membres')
+                ->where('admin', '=', 0)
                 ->first();
 
+            $admin = $membreadmin->admin;
+
+            $reserver=DB::table('reserver')
+                ->where('id', '=', $id)
+                ->where('finperiode', '>', $today)
+                ->first();
+
+
+            if($reserver != null) {
+
+                if($reserver < $today) {
+                    $datecompare = 0;
+                }
+                else {
+                    $datecompare = 1;
+                }
+            }
+
+
+            $id = Auth::user()->id;
+            
             if($reserver == null)
             {
                 $reserver = "no";
-                $message = "L'adminstrateur se charge dans un future proche de vous communiquer vos dates !";
+                $numplace = null;
             }
             else
             {
+                $validation = $reserver->valider;
                 $idplacemembre = $reserver->idplace;
                 $debutperiode = $reserver->debutperiode;
                 $finperiode = $reserver->finperiode;
-            }
-
-            $numplace = DB::table('places')
+                $numplace = DB::table('places')
                 ->where('idplace', '=', $idplacemembre)
                 ->first();
+            }
 
+            
             if($numplace == null)
             {
                 $numplacemembre = "---";
@@ -69,6 +100,62 @@ class HomeController extends Controller
                 $numplacemembre = $numplace->numplace;
             }
 
-            return view('membres.home', compact('rang', 'numplacemembre', 'debutperiode', 'finperiode', 'message'));
+            $dispo = DB::table('places')
+                ->inRandomOrder()
+                ->where('reserver', '=', 1)
+                ->first();
+
+            if($dispo == null)
+            {
+                $libre = 0;
+            }
+            else
+            {
+                $libre = $dispo->reserver;
+            }
+            
+            if(($libre) && ($rangbool) && (!$admin) && (!$datecompare)) {
+
+                $membrerangmin = DB::table('membres')
+                    ->where('rang', '=', $rangmin)
+                    ->first();
+
+
+                $place = DB::table('places')
+                    ->inRandomOrder()
+                    ->where('reserver', '=', 1)
+                    ->first();
+
+                $id = $membrerangmin->id;
+                
+                $idplace = $place->idplace;
+                $placemembre = $place->numplace;
+                $date = date('Y-m-d');
+                $date2 = Carbon::now()->addMonths(1);
+
+
+                DB::table('reserver')->insert([
+                    'idplace' => $idplace,
+                    'id' => $id,
+                    'debutperiode' => $date,
+                    'finperiode' => $date2
+                ]);
+
+                DB::table('places')
+                    ->where('numplace', '=', $placemembre)
+                    ->update(['reserver' => 0]);
+                    
+                DB::table('membres')
+                    ->where('id', '=', $id)
+                    ->update(['rang' => null]);                
+            }
+            else {
+
+                DB::table('places')
+                    ->where('idplace', '=', $idplacemembre)
+                    ->update(['reserver' => 1]);
+            }
+
+            return view('membres.home', compact('rang', 'numplacemembre', 'debutperiode', 'finperiode', 'datecompare', 'validation', 'membrevalider'));
     }
 }

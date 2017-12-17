@@ -21,12 +21,14 @@
 
                         @foreach($membresreserver as $membre)
                         <tr>
+                            @if(!$membre->valider)
                             <td >{{ $membre->id }}</td>
                             <td >{{ $membre->idplace }}</td>
                             <td >{{ $membre->debutperiode }}</td>
                             <td >{{ $membre->finperiode }}</td>
                             <td >
                                 <a href="{{ route('addplace', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
+                            @endif
                         </tr>
                         @endforeach
                     </table>

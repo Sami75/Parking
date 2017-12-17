@@ -7,6 +7,7 @@ use App\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use DB;
 
 class EditMembre extends Controller
 {
@@ -71,6 +72,20 @@ class EditMembre extends Controller
 
 		$membre->update(['password' => Hash::make($request->password)]);
 			// 'password' => Hash::make($request->password)]);
+
+		return redirect()->route('editmembre', $membre);
+	}
+
+	public function showvalider()
+	{
+		$membres = User::all();
+		return view('admin.validermembre', compact('membres'));
+	}
+
+	public function updatemembre($id)
+	{
+		$membre = User::findOrFail($id);
+		DB::table('membres')->where('id', '=', $id)->update(['valider' => 1]);
 
 		return redirect()->route('editmembre', $membre);
 	}

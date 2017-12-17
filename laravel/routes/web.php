@@ -26,9 +26,10 @@ Route::get('send/{membre}','Reserver@send')->name('sendplace');
 Route::get('sended/{message}', 'Reserver@send')->name('sended');
 
 
-Route::get('/modifierpwd', function() {
-	return view('membres.modifierpwd');
-});
+Route::get('/profilemembre', 'Profile@create')->name('profilemembre');
+Route::get('/editprofile', 'Profile@show')->name('editprofile');
+Route::get('/editpwdmembre', 'Profile@showpwd')->name('editpwdmembre');
+Route::post('/updateprofile', 'Profile@updateprofile')->name('updateprofile');
 /*Membre route*/
 
 /*Admin route*/
@@ -43,6 +44,8 @@ Route::post('updaterang/{membres}', 'EditMembre@updaterang')->name('updaterang')
 Route::post('updatepwd/{membres}', 'EditMembre@updatepwd')->name('updatepwd');
 Route::get('editpwd/{membres}', 'EditMembre@showpwd')->name('editpwd');
 Route::get('editrang/{membres}', 'EditMembre@showrang')->name('editrang');
+Route::get('validermembre', 'EditMembre@showvalider')->name('validermembre');
+Route::get('updatemembre/{membres}', 'EditMembre@updatemembre')->name('updatemembre');
 /*Routes pour l'édition des informations d'un membres*/
 
 /*Routes pour l'édition des places de parkings*/
@@ -55,16 +58,16 @@ Route::get('deleteplace/{places}', 'EditPlace@deleteplace')->name('deleteplace')
 
 Route::get('ajoutplace', 'AjoutPlace@create')->name('ajoutplace');
 Route::get('addplace/{membre}', 'AjoutPlace@show')->name('addplace');
-ROute::post('updateplace/{membre}', 'AjoutPlace@updateplace')->name('updateplace');
+Route::post('updateplace/{membre}', 'AjoutPlace@updateplace')->name('updateplace');
+
+Route::get('historique', 'Historique@create')->name('histo');
 
 
 Route::get('/historiqueplace', function() {
 	return view('admin.historiqueplace');
 });
 
-Route::get('/rangmembre', function() {
-	return view('admin.rangmembre');
-});
+Route::get('/listeattente', 'ListeAttente@create')->name('listeattente');
 /*Admin Route*/
 
 Auth::routes();

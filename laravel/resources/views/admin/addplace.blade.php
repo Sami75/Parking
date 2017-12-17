@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('finperiode') ? ' has-error' : '' }}">
-                        <label for="finperiode" class="col-md-4 control-label">Début de réservation</label>
+                        <label for="finperiode" class="col-md-4 control-label">Fin de réservation</label>
                         <div class="col-md-6">
                             <input id="finperiode" type="text" class="form-control" name="finperiode" placeholder="{{$reservation->finperiode}}" required autofocus>
 

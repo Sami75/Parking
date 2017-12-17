@@ -19,6 +19,7 @@ class CreateReserverTable extends Migration
             $table->integer('idplace')->unsigned()->foreign('idplace')->references('idplace')->on('places');
             $table->date('debutperiode')->foreign('debutperiode')->references('debutperiode')->on('periodes');
             $table->primary(array('id', 'idplace', 'debutperiode'));
+            $table->boolean('valider')->default(0);
 
         });
     }

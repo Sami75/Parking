@@ -19,11 +19,11 @@
                             <th class="col-md-2">Adresse e-mail</th>
                             <th class="col-md-2">Téléphone</th>
                             <th class="col-md-2">Rang</th>
-
                         </tr>
 
                         @foreach($membres as $membre)
                         <tr>
+                            @if (!$membre->valider)
                             <td >{{ $membre->id }}</td>
                             <td >{{ $membre->login }}</td>
                             <td >{{ $membre->nom }}</td>
@@ -31,19 +31,17 @@
                             <td >{{ $membre->email }}</td>
                             <td >{{ $membre->tel }}</td>
                             <td >{{ $membre->rang }}</td>
-                            @if(!$membre->admin)
                             <td >
-                                <a href="{{ route('selection', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
+                                <a href="{{ route('updatemembre', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Valider</button></a>
                             </td>
-                            @else
+                            <td></td>
                             <td></td>
                             @endif
-                            <td></td>
                         </tr>
                         @endforeach
                         <div class="col-md-12 text-center">
-                        <a href="{{ route('validermembre')}}"><button type="button" class="btn btn-default btn-sm">Valider des inscriptions</button></a>
-                    </div>  
+                            <a href="{{ route('editmembre')}}"><button type="button" class="btn btn-default btn-sm">Annuler</button></a>
+                        </div>  
                     </table>
 
                 </div>

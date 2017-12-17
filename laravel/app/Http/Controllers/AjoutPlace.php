@@ -98,7 +98,8 @@ class AjoutPlace extends Controller
             ->update([
             'debutperiode' => $debutperiode,
             'finperiode' => $finperiode,
-         ]);
+            'valider' => 1,     
+        ]);
 
         
 

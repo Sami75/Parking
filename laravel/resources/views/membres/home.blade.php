@@ -15,24 +15,30 @@
                     @endif
 
                     Vous êtes connecté(e) !
-
+                    @if($membrevalider)
                     <ul id="nav">
 
                         <li><a href="historique" title="Historique de vos place">Historique</a></li>
                         <li><a href="{{ route('reserverplace') }}" title="Demande de réservation">Réservation</a></li>
-                        <li><a href="modifierpwd" title="Modifier son mot de passe">Modifier le mot de passe</a></li>
+                        <li><a href="profilemembre" title="Modifier son mot de passe">Consulter son profil</a></li>
 
                     </ul>
-
-                    @if (($rang == '---') && ($numplacemembre == '---'))
-                        <p>Veuillez réserver une place de parking si vous souhaitez obtenir une place, si des places sont disponibles votre numéro de place parking vous sera attribué, aprés que l'administrateur vous communiquera les période de réservation, sinon vous serez placé en file d'attente</p>
+                    @else
+                        <p>Votre compte est en cours de validation, vous pourrez accéder au menu, lorsque l'administrateur vous aura validé</p>
+                    @endif
+                    @if (($rang == null) && ($numplacemembre == '---'))
+                        <p> Veuillez réserver une place de parking si vous souhaitez obtenir une place, si des places sont disponibles votre numéro de place parking vous sera attribué, aprés que l'administrateur vous communiquera les période de réservation, sinon vous serez placé en file d'attente</p>
                     @elseif (($numplacemembre == '---'))
                         <p>Il n'y a plus de place de parking libre !</p>
-                        <p>Rang dans la file d'attente : {{ $rang }}
-                    @else
+                        <p>Rang dans la file d'attente : {{ $rang }}</p>
+                    @elseif (!$datecompare)
+                        <p>Votre réservation de place est arrivé à écheance, veuillez renouveller votre réservation</p>
+                    @elseif ($validation)
                         <p>Votre place de parking : {{ $numplacemembre }}</p>
                         <p>Début de réservation : {{ $debutperiode }}</p>
                         <p>Fin de réservation : {{ $finperiode }}</p>
+                    @else
+                        <p>L'administrateur n'a pas valider votre réservation, il est entrain de vous attribuer des dates de réservation, veuillez patientez</p>
                     @endif
                 </div>
             </div>
