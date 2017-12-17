@@ -30,6 +30,7 @@ Route::get('/profilemembre', 'Profile@create')->name('profilemembre');
 Route::get('/editprofile', 'Profile@show')->name('editprofile');
 Route::get('/editpwdmembre', 'Profile@showpwd')->name('editpwdmembre');
 Route::post('/updateprofile', 'Profile@updateprofile')->name('updateprofile');
+Route::post('/updatepwdmembre', 'Profile@updatepwd')->name('updatepwdmembre');
 /*Membre route*/
 
 /*Admin route*/
@@ -63,9 +64,7 @@ Route::post('updateplace/{membre}', 'AjoutPlace@updateplace')->name('updateplace
 Route::get('historique', 'Historique@create')->name('histo');
 
 
-Route::get('/historiqueplace', function() {
-	return view('admin.historiqueplace');
-});
+Route::get('/historiqueplace', 'Historique@createadmin')->name('histoadmin');
 
 Route::get('/listeattente', 'ListeAttente@create')->name('listeattente');
 /*Admin Route*/

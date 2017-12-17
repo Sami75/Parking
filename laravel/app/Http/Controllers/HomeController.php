@@ -71,13 +71,15 @@ class HomeController extends Controller
                 }
             }
 
-
             $id = Auth::user()->id;
             
             if($reserver == null)
             {
                 $reserver = "no";
                 $numplace = null;
+                $datecompare = 0;
+                $idplacemembre = 0;
+                $validation = 0;
             }
             else
             {
@@ -89,7 +91,6 @@ class HomeController extends Controller
                 ->where('idplace', '=', $idplacemembre)
                 ->first();
             }
-
             
             if($numplace == null)
             {
@@ -149,7 +150,7 @@ class HomeController extends Controller
                     ->where('id', '=', $id)
                     ->update(['rang' => null]);                
             }
-            else {
+            if(!$datecompare){
 
                 DB::table('places')
                     ->where('idplace', '=', $idplacemembre)

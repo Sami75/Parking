@@ -26,18 +26,18 @@
                     @else
                         <p>Votre compte est en cours de validation, vous pourrez accéder au menu, lorsque l'administrateur vous aura validé</p>
                     @endif
-                    @if (($rang == null) && ($numplacemembre == '---'))
+                    @if (($rang == null) && ($numplacemembre == '---') && ($membrevalider))
                         <p> Veuillez réserver une place de parking si vous souhaitez obtenir une place, si des places sont disponibles votre numéro de place parking vous sera attribué, aprés que l'administrateur vous communiquera les période de réservation, sinon vous serez placé en file d'attente</p>
-                    @elseif (($numplacemembre == '---'))
+                    @elseif (($numplacemembre == '---') && ($membrevalider))
                         <p>Il n'y a plus de place de parking libre !</p>
                         <p>Rang dans la file d'attente : {{ $rang }}</p>
-                    @elseif (!$datecompare)
+                    @elseif (!$datecompare && ($membrevalider))
                         <p>Votre réservation de place est arrivé à écheance, veuillez renouveller votre réservation</p>
                     @elseif ($validation)
                         <p>Votre place de parking : {{ $numplacemembre }}</p>
                         <p>Début de réservation : {{ $debutperiode }}</p>
                         <p>Fin de réservation : {{ $finperiode }}</p>
-                    @else
+                    @elseif(!$validation && ($membrevalider))
                         <p>L'administrateur n'a pas valider votre réservation, il est entrain de vous attribuer des dates de réservation, veuillez patientez</p>
                     @endif
                 </div>

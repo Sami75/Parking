@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class Profile extends Controller
 {
@@ -49,6 +50,20 @@ class Profile extends Controller
 			'email' => $request->email,
 			'tel' => $request->tel,
 		]);
+
+		return redirect()->route('profilemembre');
+    }
+
+    public function updatepwd(Request $request)
+    {
+    	$this->validate($request, [
+			'password' => 'required|string|min:6|confirmed',
+		]);
+
+		$membre = Auth::User();
+
+		$membre->update(['password' => Hash::make($request->password)]);
+			// 'password' => Hash::make($request->password)]);
 
 		return redirect()->route('profilemembre');
     }
