@@ -69,15 +69,14 @@ class Reserver extends Controller
 			$value = $reservation->id;
 			$finperiode = $reservation->finperiode;
 		}
-
-		if($datecompare)
+		if(!$datecompare)
 		{	
 			$message = 'Vous avez déjà fais une demande de réservation, votre administrateur, vous attribuera une période';
 
 			return redirect()->route('home');
 		}
 
-		else if((!$datecompare) && ($dispo)) {
+		else if(($datecompare) && ($dispo)) {
 
 			$place = DB::table('places')
 					->inRandomOrder()
@@ -104,7 +103,7 @@ class Reserver extends Controller
 				
 			DB::table('membres')
 				->where('id', '=', $id)
-				->update(['rang' => 0]);
+				->update(['rang' => null]);
 				
 
 			$message = 'Votre demande de réservation à été pris en compte, veuillez patientez le temps que votre administrateur vous renseigne les date de début et de fin de réservation !';
