@@ -17,23 +17,21 @@
    	                        <th class="col-md-2">Fin de réservation</th>
    	                        <th class="col-md-2">Valider</th>
    	                    </tr>
-   	                    
+                        @foreach($reservations as $reservation)
+
                         <tr>
-                            @foreach($reservations as $reservation)
-                            @foreach($places as $place)
-                            @if($place->idplace == $reservation->idplace)
-                            	<td> {{ $place->numplace }} </td>
+                            	<td> {{ $reservation->idplace }} </td>
                             	<td> {{ $reservation->debutperiode }} </td>
                             	<td> {{ $reservation->finperiode}} </td>
-                            @elseif($reservation->valider == 1)
+                            @if($reservation->valider == 1)
                                	<td><span class="glyphicon glyphicon-ok"></span></td>
+
                             @else
                                 <td><span class="glyphicon glyphicon-remove"></span></td>
                             @endif
-
                         </tr>
                         @endforeach
-                        @endforeach    
+    
                     </table>
                 </div>
             </div>

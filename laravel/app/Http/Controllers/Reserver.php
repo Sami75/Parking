@@ -29,6 +29,10 @@ class Reserver extends Controller
 					->where('reserver', '=', 1)
 					->first();
 
+		$rangmembre = DB::table('membres')
+					->where('id', '=', $id)
+					->first();
+
 		$today = date('Y-m-d');
 
 		$comparedate=DB::table('reserver')
@@ -69,14 +73,8 @@ class Reserver extends Controller
 			$value = $reservation->id;
 			$finperiode = $reservation->finperiode;
 		}
-		if(!$datecompare)
-		{	
-			$message = 'Vous avez déjà fais une demande de réservation, votre administrateur, vous attribuera une période';
 
-			return redirect()->route('home');
-		}
-
-		else if(($datecompare) && ($dispo)) {
+		if(($datecompare) && ($dispo)) {
 
 			$place = DB::table('places')
 					->inRandomOrder()
@@ -110,14 +108,16 @@ class Reserver extends Controller
 
 			return redirect()->route('home');
 		}
-		else {
-
+		elseif((!$datecompare) && (!$dispo)) {
 			$lastrang = DB::table('membres')
 							->max('rang');
+
+			if($rangmembre->rang == null) {
 
 			DB::table('membres')
 				->where('id', '=', $id)
 				->update(['rang' => $lastrang+1 ]);
+			}
 
 			$message = "Il n'y a plus de place de parking disponible, vous êtes placé en file d'attente";
 
@@ -125,8 +125,12 @@ class Reserver extends Controller
 			return redirect()->route('home');
 		}
 
+		if((!$datecompare) && ($rangmembre!=null))
+		{	
+			$message = 'Vous avez déjà fais une demande de réservation, votre administrateur, vous attribuera une période';
 
-		
+			return redirect()->route('home');
+		}
 
 	}
 }

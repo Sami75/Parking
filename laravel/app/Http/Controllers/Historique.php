@@ -20,8 +20,6 @@ class Historique extends Controller
     {
     	$reservations = DB::table('reserver')->get()->all();
     	$membres = Auth::User()->all();
-    	$places = DB::table('places')->get()->all();
-    	$today = date('Y-m-d');
-    	return view('admin.historiqueplace', compact('membres', 'reservations', 'places', 'today'));
+    	return view('admin.historiqueplace', compact('membres', 'reservations'));
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class IsAdmin
 {
@@ -15,11 +16,11 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::User() && Auth::User()->admin == 1) 
+        if (Auth::User()->admin == 1) 
         {    
             return $next($request);
         }
 
-        return view('/');
+        echo'<script>alert("Vous ne pouvez accéder à cette page"); window.location.href="/"</script>';
   }
 }
