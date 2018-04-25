@@ -31,22 +31,22 @@ class Profile extends Controller
     	$membre = Auth::User();
 
     	$membre->update([
-    		'login' => 'inchange',
+    		// 'login' => 'inchange',
     		'email' => 'inchange@mail.fr'
     	]);
 
     	$this->validate($request, [
-			'login' => 'required|string|max:50|unique:membres',
-            'nom' => 'required|string|max:50',
-            'prenom' => 'required|string|max:50',
+			// 'login' => 'required|string|max:50|unique:membres',
+   //          'nom' => 'required|string|max:50',
+   //          'prenom' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:membres',
-            'tel' => 'required|numeric',
+            'tel' => 'required',
 		]);
 
 		$membre->update([
-			'login' => $request->login,
-			'nom' => $request->nom,
-			'prenom' => $request->prenom,
+			// 'login' => $request->login,
+			// 'nom' => $request->nom,
+			// 'prenom' => $request->prenom,
 			'email' => $request->email,
 			'tel' => $request->tel,
 		]);

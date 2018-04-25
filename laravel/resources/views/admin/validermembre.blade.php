@@ -6,44 +6,48 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Edition de la liste des membres</h3></div>
+                <div class="panel-heading">
+                    <h3>Edition de la liste des membres</h3>
+                    <a href="{{ route('editmembre')}}">
+                        <button type="button" class="btn btn-default btn-sm" style="float: right;">Annuler</button>
+                    </a>
+                </div>
 
                 <div class="panel-body text-center">
 
-                    <table class="table-hover">
-                        <tr>
-                            <th class="col-md-2">Id utilisateur</th>
-                            <th class="col-md-2">Nom d'utilisateur</th>
-                            <th class="col-md-2">Nom</th>
-                            <th class="col-md-2">Prenom</th>
-                            <th class="col-md-2">Adresse e-mail</th>
-                            <th class="col-md-2">Téléphone</th>
-                            <th class="col-md-2">Rang</th>
-                        </tr>
+                    <table class="table table-stripped">
+                        <thead>
+                            <th class="text-center">Id utilisateur</th>
+                            <th class="text-center">Nom d'utilisateur</th>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Prenom</th>
+                            <th class="text-center">Adresse e-mail</th>
+                            <th class="text-center">Téléphone</th>
+                            <th class="text-center">Rang</th>
+                            <th class="text-center">Action</th>
+                        </thead>
 
                         @foreach($membres as $membre)
-                        <tr>
-                            @if (!$membre->valider)
-                            <td >{{ $membre->id }}</td>
-                            <td >{{ $membre->login }}</td>
-                            <td >{{ $membre->nom }}</td>
-                            <td >{{ $membre->prenom }}</td>
-                            <td >{{ $membre->email }}</td>
-                            <td >{{ $membre->tel }}</td>
-                            <td >{{ $membre->rang }}</td>
-                            <td >
-                                <a href="{{ route('updatemembre', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Valider</button></a>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            @endif
-                        </tr>
+                        <tbody>
+                            <tr>
+                                @if (!$membre->valider)
+                                <td >{{ $membre->id }}</td>
+                                <td >{{ $membre->login }}</td>
+                                <td >{{ $membre->nom }}</td>
+                                <td >{{ $membre->prenom }}</td>
+                                <td >{{ $membre->email }}</td>
+                                <td >{{ $membre->tel }}</td>
+                                <td >{{ $membre->rang }}</td>
+                                <td >
+                                    <a href="{{ route('updatemembre', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Valider</button></a>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                @endif
+                            </tr>
+                        </tbody>
                         @endforeach
-                        <div class="col-md-12 text-center">
-                            <a href="{{ route('editmembre')}}"><button type="button" class="btn btn-default btn-sm">Annuler</button></a>
-                        </div>  
                     </table>
-
                 </div>
             </div>
         </div>

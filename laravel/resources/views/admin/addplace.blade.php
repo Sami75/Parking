@@ -13,25 +13,27 @@
                     <form class="form-horizontal" method="POST" action="{{ route('updateplace', $membre->id) }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="method" value="PUT">
-                    <table class="table-hover">
-                        <tr>
-                            <th class="col-md-2">Id utilisateur</th>
-                            <th class="col-md-2">Login</th>
-                            <th class="col-md-2">Nom</th>
-                            <th class="col-md-2">Prénom</th>
-                            <th class="col-md-2">Adresse e-mail</th>
-                            <th class="col-md-2">Téléphone</th>
-                            <th class="col-md-2">Numéros de place</th>
-                        </tr>
-                        <tr>
-                            <td >{{ $membre->id }}</td>
-                            <td >{{ $membre->login }}</td>
-                            <td >{{ $membre->nom }}</td>
-                            <td >{{ $membre->prenom }}</td>
-                            <td >{{ $membre->email }}</td>
-                            <td >{{ $membre->tel }}</td>
-                            <td >{{ $numplace->numplace }}</td>
-                        </tr>
+                    <table class="table table-stripped">
+                        <thead>
+                            <th class="text-center">Id utilisateur</th>
+                            <th class="text-center">Login</th>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Prénom</th>
+                            <th class="text-center">Adresse e-mail</th>
+                            <th class="text-center">Téléphone</th>
+                            <th class="text-center">Numéros de place</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >{{ $membre->id }}</td>
+                                <td >{{ $membre->login }}</td>
+                                <td >{{ $membre->nom }}</td>
+                                <td >{{ $membre->prenom }}</td>
+                                <td >{{ $membre->email }}</td>
+                                <td >{{ $membre->tel }}</td>
+                                <td >{{ $numplace->numplace }}</td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <div class="form-group{{ $errors->has('debutperiode') ? ' has-error' : '' }}">

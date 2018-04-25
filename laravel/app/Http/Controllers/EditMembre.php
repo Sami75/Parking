@@ -15,7 +15,8 @@ class EditMembre extends Controller
 	{
 
 		$membres = User::all();
-		return view('admin.editmembre', compact('membres'));
+		$nbValider = User::all()->where('valider', '=', 0)->count();
+		return view('admin.editmembre', compact('membres', 'nbValider'));
 	}
 
 	public function show($id)

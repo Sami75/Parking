@@ -19,7 +19,7 @@
                             <label for="login" class="col-md-4 control-label">Nom d'utilisateur</label>
 
                             <div class="col-md-6">
-                                <input id="login" type="text" class="form-control" name="login" value="{{ Auth::User()->login }}" required autofocus>
+                                <input id="login" type="text" class="form-control" name="login" value="{{ Auth::User()->login }}" disabled="disabled" required autofocus>
 
                                 @if ($errors->has('login'))
                                     <span class="help-block">
@@ -33,7 +33,7 @@
                             <label for="nom" class="col-md-4 control-label">Nom</label>
 
                             <div class="col-md-6">
-                                <input id="nom" type="text" class="form-control" name="nom" value="{{ Auth::User()->nom }}" required autofocus>
+                                <input id="nom" type="text" class="form-control" name="nom" value="{{ Auth::User()->nom }}" disabled="disabled" required autofocus>
 
                                 @if ($errors->has('nom'))
                                     <span class="help-block">
@@ -47,7 +47,7 @@
                             <label for="prenom" class="col-md-4 control-label">Prenom</label>
 
                             <div class="col-md-6">
-                                <input id="prenom" type="text" class="form-control" name="prenom" value="{{ Auth::User()->prenom }}" required autofocus>
+                                <input id="prenom" type="text" class="form-control" name="prenom" value="{{ Auth::User()->prenom }}" disabled="disabled" required autofocus>
 
                                 @if ($errors->has('prenom'))
                                     <span class="help-block">

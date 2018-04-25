@@ -10,26 +10,29 @@
 
                 <div class="panel-body text-center">
 
-                    <table class="table-hover">
-                        <tr>
-                            <th class="col-md-2">Id utilisateur</th>
-                            <th class="col-md-2">Id place</th>
-                            <th class="col-md-2">Début de réservation</th>
-                            <th class="col-md-2">Fin de réservation</th>
-
-                        </tr>
+                    <table class="table table*stripped">
+                        <thead>
+                            <th class="text-center">Id utilisateur</th>
+                            <th class="text-center">Id place</th>
+                            <th class="text-center">Début de réservation</th>
+                            <th class="text-center">Fin de réservation</th>
+                            <th class="text-center">Sélectionner</th>
+                        </thead>
 
                         @foreach($membresreserver as $membre)
-                        <tr>
-                            @if(!$membre->valider)
-                            <td >{{ $membre->id }}</td>
-                            <td >{{ $membre->idplace }}</td>
-                            <td >{{ $membre->debutperiode }}</td>
-                            <td >{{ $membre->finperiode }}</td>
-                            <td >
-                                <a href="{{ route('addplace', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
-                            @endif
-                        </tr>
+                        <tbody>
+                            <tr>
+                                @if(!$membre->valider)
+                                <td >{{ $membre->id }}</td>
+                                <td >{{ $membre->idplace }}</td>
+                                <td >{{ $membre->debutperiode }}</td>
+                                <td >{{ $membre->finperiode }}</td>
+                                <td >
+                                    <a href="{{ route('addplace', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
+                                </td>
+                                @endif
+                            </tr>
+                        </tbody>
                         @endforeach
                     </table>
 

@@ -6,37 +6,39 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Edition de la liste des places de parkings</h3></div>
+                <div class="panel-heading">
+                    <h3>Edition de la liste des places de parkings</h3>
+                    <a href="{{ route('editplace') }}">
+                        <button type="button" class="btn btn-default btn-sm" style="float: right;">Annuler</button>
+                    </a>
+                </div>
 
-                <div class="panel-body">
+                <div class="panel-body text-center">
 
-                        <table class="table">
-                            <tr>
-                                <th class="col-md-2">Id place</th>
-                                <th class="col-md-2">Numéro de place</th>
-                                <th class="col-md-2">Statut</th>
-                            </tr>
-
-                            <tr>
+                        <table class="table table-stripped">
+                            <thead>
+                                <th class="text-center">Id place</th>
+                                <th class="text-center">Numéro de place</th>
+                                <th class="text-center">Statut</th>
+                                <th class="text-center">Action</th>
+                            </thead>
+                            <tbody>
+                                <tr>
                                     <td>{{ $place->idplace }}</td>
                                     <td>{{ $place->numplace }}</td>
                                     @if($place->reserver == 1)
-                                        <td><span class="glyphicon glyphicon-ok"></span></td>
+                                        <td><span class="fa fa-lock"></span></td>
                                     @else
-                                        <td><span class="glyphicon glyphicon-remove"></span></td>
-                                    @endif  
-                            </tr>
+                                        <td><span class="fa fa-unlock"></span></td>
+                                    @endif
+                                    <td>
+                                        <a href="{{ route('deleteplace', $place->idplace) }}">
+                                            <button type="button" class="btn btn-default btn-sm">Supprimer</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <a href="{{ route('deleteplace', $place->idplace) }}">
-                                <button type="button" class="btn btn-default btn-sm">Supprimer</button>
-                            </a>
-                            <a href="{{ route('editplace') }}">
-                                <button type="button" class="btn btn-default btn-sm">Annuler</button>
-                            </a>
-                            </a>
-                        </div> 
                 </div>
             </div>
         </div>

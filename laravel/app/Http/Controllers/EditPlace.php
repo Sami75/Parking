@@ -28,7 +28,8 @@ class EditPlace extends Controller
     public function create()
     {
         $places = DB::table('places')->get();
-        return view('admin.editplace', compact('places'));
+        $membre = Auth::user()->all();
+        return view('admin.editplace', compact('places', 'membre'));
     }
 
     /**
@@ -58,7 +59,11 @@ class EditPlace extends Controller
         $place = DB::table('places')
                     ->where('idplace', $id)
                     ->first();
-        return view('admin.selectionplace', compact('place'));
+
+        $membre = DB::table('membres')
+                    ->where('id', $id)
+                    ->first();
+        return view('admin.selectionplace', compact('place', 'membre'));
     }
 
     public function add(Request $request)

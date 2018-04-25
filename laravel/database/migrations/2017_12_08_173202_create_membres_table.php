@@ -19,7 +19,7 @@ class CreateMembresTable extends Migration
             $table->string('nom', 50);
             $table->string('prenom', 50);
             $table->string('email', 50)->unique();
-            $table->integer('tel');
+            $table->string('tel');
             $table->string('password');
             $table->boolean('admin')->default(0);
             $table->integer('rang')->nullable()->unique();

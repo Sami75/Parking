@@ -6,36 +6,38 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Edition de la liste des places de parking</h3></div>
+                <div class="panel-heading">
+                    <h3>Edition de la liste des places de parking</h3>
+                    <a href="{{route('creation')}}"><button type="button" class="btn btn-default btn-sm" style="float: right;">Créer des places de parking</button></a>
+                </div>
 
                 <div class="panel-body text-center">
 
-                    <table class="table-hover">
-                        <tr>
-                            <th class="col-md-2">Id place</th>
-                            <th class="col-md-2">Numéro de place</th>
-                            <th class="col-md-2">Statut</th>
-                            <th class="col-md-2">Sélectionner</th>
-
-                        </tr>
+                    <table class="table table-stripped">
+                        <thead>
+                            <th class="text-center">Id place</th>
+                            <th class="text-center">Numéro de place</th>
+                            <th class="text-center">Statut</th>
+                            <th class="text-center">Sélectionner</th>
+                        </thead>
                         @foreach($places as $place)
-                        <tr>
-                            <td> {{ $place->idplace }} </td>
-                            <td> {{ $place->numplace}} </td>
-                            
-                                @if($place->reserver == 1)
-                                    <td><span class="glyphicon glyphicon-ok"></span></td>
-                                @else
-                                    <td><span class="glyphicon glyphicon-remove"></span></td>
-                                @endif
-                            <td>
-                                <a href="{{ route('selectionplace', $place->idplace) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
-                            </td>
-                        </td>
-                        </tr>    
+                        <tbody>
+                            <tr>
+                                <td> {{ $place->idplace }} </td>
+                                <td> {{ $place->numplace}} </td>
+                                
+                                    @if($place->reserver == 1)
+                                        <td><span class="fa fa-lock"></span></td>
+                                    @else
+                                        <td><span class="fa fa-unlock"></span></td>
+                                    @endif
+                                <td>
+                                    <a href="{{ route('selectionplace', $place->idplace) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
+                                </td>
+                            </tr>
+                        </tbody>
                         @endforeach
                     </table>
-                    <a href="{{route('creation')}}"><button type="button" class="btn btn-default btn-sm">Créer</button></a>
                 </div>
             </div>
         </div>

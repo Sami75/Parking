@@ -10,26 +10,27 @@
 
                 <div class="panel-body text-center">
 
-                    <table class="table-hover">
-                    	<tr>
-                            <th class="col-md-2">Numéro de place</th>
-                            <th class="col-md-2">Début de réservation</th>
-   	                        <th class="col-md-2">Fin de réservation</th>
-   	                        <th class="col-md-2">Valider</th>
-   	                    </tr>
+                    <table class="table table-stripped">
+                    	<thead>
+                            <th class="text-center">Numéro de place</th>
+                            <th class="text-center">Début de réservation</th>
+   	                        <th class="text-center">Fin de réservation</th>
+   	                        <th class="text-center">Réservation Valider</th>
+   	                    </thead>
                         @foreach($reservations as $reservation)
+                        <tbody>
+                            <tr>
+                                	<td> {{ $reservation->idplace }} </td>
+                                	<td> {{ $reservation->debutperiode }} </td>
+                                	<td> {{ $reservation->finperiode}} </td>
+                                @if($reservation->valider == 1)
+                                   	<td><span class="fa fa-check"></span></td>
 
-                        <tr>
-                            	<td> {{ $reservation->idplace }} </td>
-                            	<td> {{ $reservation->debutperiode }} </td>
-                            	<td> {{ $reservation->finperiode}} </td>
-                            @if($reservation->valider == 1)
-                               	<td><span class="glyphicon glyphicon-ok"></span></td>
-
-                            @else
-                                <td><span class="glyphicon glyphicon-remove"></span></td>
-                            @endif
-                        </tr>
+                                @else
+                                    <td><span class="fa fa-remove"></span></td>
+                                @endif
+                            </tr>
+                        </tbody>
                         @endforeach
     
                     </table>
