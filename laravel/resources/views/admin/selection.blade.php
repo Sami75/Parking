@@ -8,18 +8,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>Edition de la liste des membres</h3>
-                    <a href="{{ route('editpwd', $membres->id) }}">
-                        <button type="button" class="btn btn-default btn-sm" style="float: right;">Modifier le mot de passe</button>
-                    </a>
-                    <a href="{{ route('editrang', $membres->id) }}">
-                        <button type="button" class="btn btn-default btn-sm" style="float: right;">Modifier le rang</button>
-                    </a>
-                    <a href="{{ route('editmembre') }}">
-                        <button type="button" class="btn btn-default btn-sm" style="float: right;">Annuler</button>
+                    <a href="{{ route('editmembre')}}">
+                        <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
                     </a>
                 </div>
 
-                <div class="panel-body text-center">
+                <div class="panel-body text-center" style="height: 400px; overflow-y: scroll; width: 100%;">
                         <table class="table table-stripped">
                             <thead>
                                 <th class="text-center">Id utilisateur</th>
@@ -41,7 +35,7 @@
                                         <td>{{ $membres->rang}}</td>
                                         <td>
                                             <a href="{{ route('supprimer', $membres->id) }}">
-                                                <button type="button" class="btn btn-default btn-sm">Supprimer</button>
+                                                <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                             </a>
                                         </td>
                                     @else
@@ -50,8 +44,14 @@
                                     @endif
                                 </tr>
                             </tbody>
-                        </table> 
-                </div>
+                        </table>
+                        <a href="{{ route('editpwd', $membres->id) }}">
+                            <button type="button" class="btn btn-warning btn-sm" style="float: center;">Modifier le mot de passe</button>
+                        </a>
+                        <a href="{{ route('editrang', $membres->id) }}">
+                            <button type="button" class="btn btn-warning btn-sm" style="float: center;">Modifier le rang</button>
+                        </a>
+                    </div>
             </div>
         </div>
     </div>

@@ -14,13 +14,15 @@
                     	</a>           
                     @else
                     	<a href="{{ route('validermembre')}}">
-                    		<button type="button" class="btn btn-primary disabled" style="float: right;">Nouveau(x) compte(s) <span class="badge badge-light">{{$nbValider}}</span></button>
+                    		<button type="button" class="btn btn-primary disabled " style="float: right;">Nouveau(x) compte(s) <span class="badge badge-light">{{$nbValider}}</span></button>
                     	</a>
                     @endif
-
+                    <a href="{{ route('admin')}}">
+                    	<button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
+                    </a>
                 </div>
 
-                <div class="panel-body text-center">
+                <div class="panel-body text-center" style="height: 400px; overflow-y: scroll; width: 100%;">
 
                     <table class="table table-stripped">
                     	<thead>
@@ -33,26 +35,26 @@
 	                            <th class="text-center">Rang</th>
 	                            <th class="text-center">Sélectionner</th>
 	                    </thead>
-	                    <tbody>
-	                        @foreach($membres as $membre)
-	                        <tr>
-	                            <td>{{ $membre->id }}</td>
-	                            <td>{{ $membre->login }}</td>
-	                            <td>{{ $membre->nom }}</td>
-	                            <td>{{ $membre->prenom }}</td>
-	                            <td>{{ $membre->email }}</td>
-	                            <td>{{ $membre->tel }}</td>
-	                            <td>{{ $membre->rang }}</td>
-	                            @if(!$membre->admin)
-	                            <td >
-	                                <a href="{{ route('selection', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
-	                            </td>
-	                            @else
-	                            <td></td>
-	                            @endif
-	                        </tr>
-	                        @endforeach
-	                    </tbody> 
+	                    @foreach($membres as $membre)
+	                        <tbody>
+		                        <tr>
+		                            <td>{{ $membre->id }}</td>
+		                            <td>{{ $membre->login }}</td>
+		                            <td>{{ $membre->nom }}</td>
+		                            <td>{{ $membre->prenom }}</td>
+		                            <td>{{ $membre->email }}</td>
+		                            <td>{{ $membre->tel }}</td>
+		                            <td>{{ $membre->rang }}</td>
+		                            @if(!$membre->admin)
+		                            <td>
+		                                <a href="{{ route('selection', $membre->id) }}"><button type="button" class="btn btn-primary btn-sm">Sélectionner</button></a>
+		                            </td>
+		                            @else
+		                            <td></td>
+		                            @endif
+		                        </tr>
+		                    </tbody>
+	                    @endforeach
                     </table>
                 </div>
             </div>

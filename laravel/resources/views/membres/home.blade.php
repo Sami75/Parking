@@ -13,16 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    Vous êtes connecté(e) !
                     @if($membrevalider)
-                    <ul id="nav">
+                    <div id="list-group">
 
-                        <li><a href="historique" title="Historique de vos place">Historique</a></li>
-                        <li><a href="{{ route('reserverplace') }}" title="Demande de réservation">Réservation</a></li>
-                        <li><a href="profilemembre" title="Modifier son mot de passe">Consulter son profil</a></li>
+                        <a href="historique" class="list-group-item" title="Historique de vos place">Historique</a>
+                        <a href="{{ route('reserverplace') }}" class="list-group-item" title="Demande de réservation">Réservation</a>
+                        <a href="profilemembre" class="list-group-item" title="Modifier son mot de passe">Consulter son profil</a>
 
-                    </ul>
+                    </div><br/>
                     @else
                         <p>Votre compte est en cours de validation, vous pourrez accéder au menu, lorsque l'administrateur vous aura validé</p>
                     @endif

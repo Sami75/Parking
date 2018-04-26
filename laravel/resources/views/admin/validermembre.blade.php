@@ -9,11 +9,11 @@
                 <div class="panel-heading">
                     <h3>Edition de la liste des membres</h3>
                     <a href="{{ route('editmembre')}}">
-                        <button type="button" class="btn btn-default btn-sm" style="float: right;">Annuler</button>
+                        <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
                     </a>
                 </div>
 
-                <div class="panel-body text-center">
+                <div class="panel-body text-center" style="height: 400px; overflow-y: scroll; width: 100%;">
 
                     <table class="table table-stripped">
                         <thead>

@@ -6,9 +6,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Attribuer manuelle une place de parking</h3></div>
+                <div class="panel-heading">
+                    <h3>Attribuer manuellement une place de parking</h3>
+                    <a href="{{ route('ajoutplace')}}">
+                        <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
+                    </a>
+                </div>
 
-                <div class="panel-body text-center">
+                <div class="panel-body text-center" style="height: 400px; overflow-y: scroll; width: 100%;">
 
                     <form class="form-horizontal" method="POST" action="{{ route('updateplace', $membre->id) }}">
                         {{ csrf_field() }}
@@ -62,10 +67,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-default btn-sm" value="Submit Button">Modifier</button>
-                        <a href="{{ route('ajoutplace') }}">
-                            <button type="button" class="btn btn-default btn-sm">Annuler</button>
-                        </a>
+                        <button type="submit" class="btn btn-primary btn-sm" value="Submit Button">Valider</button>
                     </div>
                 </form>
                 </div>

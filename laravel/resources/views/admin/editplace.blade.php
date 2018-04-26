@@ -8,10 +8,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>Edition de la liste des places de parking</h3>
-                    <a href="{{route('creation')}}"><button type="button" class="btn btn-default btn-sm" style="float: right;">Créer des places de parking</button></a>
+                    <a href="{{route('creation')}}">
+                        <button type="button" class="btn btn-primary btn-sm" style="float: right;">Créer des places de parking</button>
+                    </a>
+                    <a href="{{ route('admin')}}">
+                        <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
+                    </a>
                 </div>
 
-                <div class="panel-body text-center">
+                <div class="panel-body text-center" style="height: 400px; overflow-y: scroll; width: 100%;">
 
                     <table class="table table-stripped">
                         <thead>
@@ -32,7 +37,7 @@
                                         <td><span class="fa fa-unlock"></span></td>
                                     @endif
                                 <td>
-                                    <a href="{{ route('selectionplace', $place->idplace) }}"><button type="button" class="btn btn-default btn-sm">Sélectionner</button></a>
+                                    <a href="{{ route('selectionplace', $place->idplace) }}"><button type="button" class="btn btn-primary btn-sm">Sélectionner</button></a>
                                 </td>
                             </tr>
                         </tbody>
