@@ -71,7 +71,7 @@
                             <label for="tel" class="col-md-4 control-label">Téléphone</label>
 
                             <div class="col-md-6">
-                                <input id="tel" type="text" class="form-control" name="tel" value="{{ old('tel') }}" required autofocus>
+                                <input type="tel" maxlength="10" minlength="10" class="form-control" name="tel" value="{{ old('tel') }}" required autofocus>
 
                                 @if ($errors->has('tel'))
                                     <span class="help-block">

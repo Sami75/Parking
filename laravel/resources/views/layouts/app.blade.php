@@ -54,25 +54,53 @@
                             <li><a href="{{ route('login') }}">Connexion</a></li>
                             <li><a href="{{ route('register') }}">Inscription</a></li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->nom }} <span class="caret"></span>
-                                </a>
+                            @if(Auth::User()->admin)
+                                <li class="dropdown">
+                                    <a href="/home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Bonjour, {{ Auth::user()->nom }} {{ Auth::user()->prenom}}<span class="caret"></span>
+                                    </a>
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Déconnexion
-                                        </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="editmembre" title="Editer la liste des membres">Membres</a>
+                                            <a href="editplace" title="Editer la liste des places">Places de parkings</a>
+                                            <a href="ajoutplace" title="Attribuer une place manuellement">Attribuer des places</a>
+                                            <a href="listeattente" title="Consulter la liste d'attente">File d'attente</a>
+                                            <a href="historiqueplace" title="Consulter la liste d'attribution des places">Historique</a>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                Déconnexion
+                                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @else
+                                <li class="dropdown">
+                                    <a href="/home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Bonjour, {{ Auth::user()->nom }} {{ Auth::user()->prenom}}<span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="historique" title="Historique de vos place">Historique</a>
+                                            <a href="{{ route('reserverplace') }}" title="Demande de réservation">Réservation</a>
+                                            <a href="profilemembre" title="Modifier son mot de passe">Mon compte</a>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                Déconnexion
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
                 </div>

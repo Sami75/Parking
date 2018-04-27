@@ -6,20 +6,23 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Historique de vos réservation</h3>
-                	{{ $membre->nom}}
-                    {{ $membre->prenom}}</div>
+                <div class="panel-heading">
+                    <h3>Mes réservations</h3>
+                    <a href="{{ route('home')}}">
+                        <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
+                    </a>
+                </div>
 
-                <div class="panel-body text-center">
+                <div class="panel-body text-center" style="height: 400px; overflow-y: scroll; width: 100%;">
 
-                    <table class="table-hover">
-                    	<tr>
-                            <th class="col-md-2">Numéro de place</th>
-                            <th class="col-md-2">Date de réservation</th>
-   	                        <th class="col-md-2">Fin de réservation</th>
-   	                    </tr>
+                    <table class="table table-stripped">
+                    	<thead>
+                            <th class="text-center">Numéro de place</th>
+                            <th class="text-center">Date de réservation</th>
+   	                        <th class="text-center">Fin de réservation</th>
+   	                    </thead>
    	                    @foreach($reservations as $reservation)
-                        <tr>
+                        <tbody>
                             @php
                             	$places = DB::table('places')->select('numplace')->where('idplace', '=', $reservation->idplace)->get();
                             @endphp
@@ -28,7 +31,7 @@
                             @endforeach
                             <td> {{ $reservation->debutperiode }} </td>
                             <td> {{ $reservation->finperiode}} </td>
-                        </tr>
+                        </tbody>
                         @endforeach    
                     </table>
                 </div>

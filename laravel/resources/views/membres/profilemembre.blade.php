@@ -6,34 +6,38 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Edition de la liste des membres</h3></div>
+                <div class="panel-heading">
+                    <h3>Mon profil</h3>
+                    <a href="{{ route('home')}}">
+                        <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
+                    </a>
+                </div>
 
-                <div class="panel-body text-center">
-                	<ul id="nav">
+                <div class="panel-body text-center" style="height: 400px; overflow-y: scroll; width: 100%;">
 
-                        <li><a href="editprofile" title="Modifier ses informations">Modifier ses informations</a></li>
-                        <li><a href="editpwdmembre" title="Modifier son mot de passe">Modifier son mot de passe</a></li>
-                    
-                    </ul>
-
-                            <table class="table-hover">
-                        <tr>
+                    <table class="table table+stripped">
+                        <thead>
                             <th class="col-md-2">Nom d'utilisateur</th>
                             <th class="col-md-2">Nom</th>
                             <th class="col-md-2">Prenom</th>
                             <th class="col-md-2">Adresse e-mail</th>
                             <th class="col-md-2">Téléphone</th>
 
-                        </tr>
-                        <tr>
+                        </thead>
+                        <tbody>
                             <td >{{ Auth::User()->login }}</td>
                             <td >{{ Auth::User()->nom }}</td>
                             <td >{{ Auth::User()->prenom }}</td>
                             <td >{{ Auth::User()->email }}</td>
                             <td >{{ Auth::User()->tel }}</td>
-                        </tr>  
+                        </tbody>  
                     </table>
-
+                        <a href="editprofile" title="Modifier ses informations">
+                            <button type="button" class="btn btn-warning btn-sm">Modifier ses informations</button>
+                        </a>
+                        <a href="editpwdmembre" title="Modifier son mot de passe">
+                            <button type="button" class="btn btn-warning btn-sm">Modifier son mot de passe</button>
+                        </a>                    
                 </div>
             </div>
         </div>

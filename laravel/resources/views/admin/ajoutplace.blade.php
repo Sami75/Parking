@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Attribuer manuellement une place de parking</h3>
+                    <h3>Liste des places de parkings réservées</h3>
                     <a href="{{ route('admin')}}">
                         <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
                     </a>

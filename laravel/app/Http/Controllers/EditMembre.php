@@ -45,7 +45,8 @@ class EditMembre extends Controller
 
     		$membre->delete();
     		$membres = User::all();
-    		return view('admin.editmembre', compact('membres'));
+    		$nbValider = User::all()->where('valider', '=', 0)->count();
+    		return redirect()->route('editmembre', compact('membres', 'nbValider'));
 		}	
 	}
 

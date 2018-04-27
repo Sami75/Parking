@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Edition de la liste des membres</h3>
+                    <h3>Nouveau(x) Compte(s)</h3>
                     <a href="{{ route('editmembre')}}">
                         <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
                     </a>
@@ -24,7 +24,6 @@
                             <th class="text-center">Adresse e-mail</th>
                             <th class="text-center">Téléphone</th>
                             <th class="text-center">Rang</th>
-                            <th class="text-center">Action</th>
                         </thead>
 
                         @foreach($membres as $membre)
@@ -38,9 +37,6 @@
                                 <td >{{ $membre->email }}</td>
                                 <td >{{ $membre->tel }}</td>
                                 <td >{{ $membre->rang }}</td>
-                                <td >
-                                    <a href="{{ route('updatemembre', $membre->id) }}"><button type="button" class="btn btn-default btn-sm">Valider</button></a>
-                                </td>
                                 <td></td>
                                 <td></td>
                                 @endif
@@ -48,6 +44,7 @@
                         </tbody>
                         @endforeach
                     </table>
+                    <a href="{{ route('updatemembre', $membre->id) }}"><button type="button" class="btn btn-primary btn-sm">Valider</button></a>
                 </div>
             </div>
         </div>

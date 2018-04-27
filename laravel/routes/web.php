@@ -16,6 +16,7 @@ use App\Http\Middleware\IsAdmin;
 /*Accueil*/
 Route::get('/', function () {
     return view('welcome');
+
 });
 
 Route::get('mdpoublier', 'Contacts@create')->name('mdpoublier');

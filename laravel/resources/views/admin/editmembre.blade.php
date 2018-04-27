@@ -7,14 +7,14 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                	<h3>Edition de la liste des membres</h3>
+                	<h3>Liste des membres</h3>
                 	@if($nbValider > 0)
                     	<a href="{{ route('validermembre')}}">
-                    		<button type="button" class="btn btn-primary active" style="float: right;">Nouveau(x) compte(s) <span class="badge badge-light">{{$nbValider}}</span></button>
+                    		<button type="button" class="btn btn-primary active" style="float: right;">Nouveau(x) compte(s) <span class="badge badge-danger">{{$nbValider}}</span></button>
                     	</a>           
                     @else
                     	<a href="{{ route('validermembre')}}">
-                    		<button type="button" class="btn btn-primary disabled " style="float: right;">Nouveau(x) compte(s) <span class="badge badge-light">{{$nbValider}}</span></button>
+                    		<button type="button" class="btn btn-primary disabled " style="float: right;">Nouveau(x) compte(s) <span class="badge badge-danger">{{$nbValider}}</span></button>
                     	</a>
                     @endif
                     <a href="{{ route('admin')}}">
@@ -37,22 +37,22 @@
 	                    </thead>
 	                    @foreach($membres as $membre)
 	                        <tbody>
-		                        <tr>
-		                            <td>{{ $membre->id }}</td>
-		                            <td>{{ $membre->login }}</td>
-		                            <td>{{ $membre->nom }}</td>
-		                            <td>{{ $membre->prenom }}</td>
-		                            <td>{{ $membre->email }}</td>
-		                            <td>{{ $membre->tel }}</td>
-		                            <td>{{ $membre->rang }}</td>
-		                            @if(!$membre->admin)
-		                            <td>
-		                                <a href="{{ route('selection', $membre->id) }}"><button type="button" class="btn btn-primary btn-sm">Sélectionner</button></a>
-		                            </td>
-		                            @else
-		                            <td></td>
-		                            @endif
-		                        </tr>
+								<td>{{ $membre->id }}</td>
+		                   	    <td>{{ $membre->login }}</td>
+		                        <td>{{ $membre->nom }}</td>
+		           	            <td>{{ $membre->prenom }}</td>
+		                        <td>{{ $membre->email }}</td>
+		                        <td>{{ $membre->tel }}</td>
+		                        <td>{{ $membre->rang }}</td>
+	                            @if(!$membre->admin)
+	                            	<td>
+		                            	<a href="{{ route('selection', $membre->id) }}">
+		                            		<button type="button" class="btn btn-primary btn-sm">Sélectionner</button>
+		                            	</a>
+		                        	</td>
+		                        @else
+		                        	<td></td>
+		                        @endif    
 		                    </tbody>
 	                    @endforeach
                     </table>

@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>File d'attente pour la réservation d'une place de parking</h3>
+                    <h3>File d'attente</h3>
                     <a href="{{ route('admin')}}">
                         <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
                     </a>

@@ -6,23 +6,28 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Edition de la liste des membres</h3></div>
+                <div class="panel-heading">
+                    <h3>Edition du mot de passe</h3>
+                    <a href="{{ route('selection', $membres->id)}}">
+                        <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
+                    </a>
+                </div>
 
-                <div class="panel-body">
+                <div class="panel-body text-center" style="height: 400px; overflow-y: scroll; width: 100%;">
                     <form class="form-horizontal" method="POST" action="{{ route('updatepwd', $membres->id) }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="method" value="PUT">
 
-                        <table class="table">
-                            <tr>
-                                <th>Id utilisateur</th>
-                                <th>Nom d'utilisateur</th>
-                                <th>Nom</th>
-                                <th>Prenom</th>
-                                <th>Adresse e-mail</th>
-                            </tr>
+                        <table class="table table-stripped">
+                            <thead>
+                                <th class="text-center">Id utilisateur</th>
+                                <th class="text-center">Nom d'utilisateur</th>
+                                <th class="text-center">Nom</th>
+                                <th class="text-center">Prenom</th>
+                                <th class="text-center">Adresse e-mail</th>
+                            </thead>
 
-                            <tr>
+                            <tbody>
                                 @if(!$membres->admin)
                                     <td>{{ $membres->id }}</td>
                                     <td>{{ $membres->login }}</td>
@@ -34,7 +39,7 @@
                                     <td></td>
                                     <td></td>
                                 @endif
-                            </tr>
+                            </tbody>
                         </table> 
                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Mot de passe</label>
@@ -57,12 +62,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-default btn-sm" value="Submit Button">Modifier</button>
-                            <a href="{{ route('editmembre') }}">
-                                <button type="button" class="btn btn-default btn-sm">Annuler</button>
-                            </a>
-                        </div> 
+                        <button type="submit" class="btn btn-warning btn-sm" value="Submit Button">Modifier</button>
                     </form>
                 </div>
             </div>

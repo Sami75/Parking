@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Edition de la liste des places de parking</h3>
+                    <h3>Liste des places de parkings</h3>
                     <a href="{{route('creation')}}">
                         <button type="button" class="btn btn-primary btn-sm" style="float: right;">Créer des places de parking</button>
                     </a>

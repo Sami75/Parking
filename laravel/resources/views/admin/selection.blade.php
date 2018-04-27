@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Edition de la liste des membres</h3>
+                    <h3>Edition de membres</h3>
                     <a href="{{ route('editmembre')}}">
                         <button type="button" class="btn btn-primary fa fa-chevron-left" style="float: left;"> Retour</button>
                     </a>

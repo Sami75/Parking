@@ -30,17 +30,13 @@ class Profile extends Controller
     {
     	$membre = Auth::User();
 
-    	$membre->update([
-    		// 'login' => 'inchange',
-    		'email' => 'inchange@mail.fr'
-    	]);
 
     	$this->validate($request, [
 			// 'login' => 'required|string|max:50|unique:membres',
    //          'nom' => 'required|string|max:50',
    //          'prenom' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:membres',
-            'tel' => 'required',
+            'tel' => 'required|regex:/[0-9]{10}/',
 		]);
 
 		$membre->update([
