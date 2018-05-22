@@ -32,9 +32,9 @@
                                 <td> {{ $place->numplace}} </td>
                                 
                                     @if($place->reserver == 1)
-                                        <td><span class="fa fa-lock"></span></td>
-                                    @else
                                         <td><span class="fa fa-unlock"></span></td>
+                                    @else
+                                        <td><span class="fa fa-lock"></span></td>
                                     @endif
                                 <td>
                                     <a href="{{ route('selectionplace', $place->idplace) }}"><button type="button" class="btn btn-primary btn-sm">Sélectionner</button></a>

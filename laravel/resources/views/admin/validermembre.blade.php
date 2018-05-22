@@ -24,6 +24,7 @@
                             <th class="text-center">Adresse e-mail</th>
                             <th class="text-center">Téléphone</th>
                             <th class="text-center">Rang</th>
+                            <th class="text-center">Action</th>
                         </thead>
 
                         @foreach($membres as $membre)
@@ -37,14 +38,16 @@
                                 <td >{{ $membre->email }}</td>
                                 <td >{{ $membre->tel }}</td>
                                 <td >{{ $membre->rang }}</td>
-                                <td></td>
+                                <td>
+                                    <a href="{{ route('updatemembre', $membre->id) }}"><button type="button" class="btn btn-primary btn-sm">Valider</button></a>
+                                </td>
                                 <td></td>
                                 @endif
                             </tr>
                         </tbody>
                         @endforeach
                     </table>
-                    <a href="{{ route('updatemembre', $membre->id) }}"><button type="button" class="btn btn-primary btn-sm">Valider</button></a>
+                   
                 </div>
             </div>
         </div>
